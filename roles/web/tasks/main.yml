@@ -1,0 +1,16 @@
+- name: Install nginx
+  package:
+    name: nginx
+    state: present
+
+- name: Copy application file
+  copy:
+    src: index.html
+    dest: /usr/share/nginx/html/index.html
+  notify: restart nginx
+
+- name: Start nginx service
+  service:
+    name: nginx
+    state: started
+    enabled: yes
